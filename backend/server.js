@@ -22,6 +22,8 @@ app.post('/signup', (req, res) => {
 
   const newUser = { username, password };
   users.push(newUser);
+  
+  console.log('Users after signup:', users); // 추가된 로그
 
   return res.status(201).json({ success: true, message: '회원가입이 성공적으로 완료되었습니다.' });
 });
