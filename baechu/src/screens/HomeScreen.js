@@ -1,13 +1,26 @@
+// HomeScreen.js
+
 import React from 'react';
-import { View } from 'react-native';
-// import ApiComponent from '../components/ApiComponent';
-import LoginComponent from '../components/LoginComponent';
+import { View, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
+  const goToSignup = () => {
+    navigation.navigate('Signup');
+  };
+
+  const goToLogin = () =>{
+    navigation.navigate('Login');
+  }
+
   return (
     <View>
-      <LoginComponent />
+      <Button title="Sign Up" onPress={goToSignup} />    
+      <Button title="Login" onPress={goToLogin} />
     </View>
+    
   );
 };
 

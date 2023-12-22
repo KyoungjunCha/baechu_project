@@ -1,20 +1,39 @@
+// server.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // cors 미들웨어 추가
+const cors = require('cors');
+
 const app = express();
-const port = 8082;
+const port = 3000;
 
 app.use(bodyParser.json());
-app.use(cors()); // 모든 출처에서의 요청 허용
+app.use(cors());
+
+const users = [];
+
+app.post('/signup', (req, res) => {
+  const { username, password } = req.body;
+
+  const existingUser = users.find(user => user.username === username);
+  if (existingUser) {
+    return res.status(400).json({ success: false, message: '이미 등록된 사용자입니다.' });
+  }
+
+  const newUser = { username, password };
+  users.push(newUser);
+
+  return res.status(201).json({ success: true, message: '회원가입이 성공적으로 완료되었습니다.' });
+});
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  // 간단한 예시: 하드코딩된 값과 일치하는지 검증
-  if (username === 'user' && password === 'pass') {
-    res.json({ success: true, message: 'Login successful' });
+  const user = users.find(user => user.username === username && user.password === password);
+  if (user) {
+    return res.json({ success: true, message: '로그인이 성공적으로 완료되었습니다.' });
   } else {
-    res.json({ success: false, message: 'Login failed' });
+    return res.status(401).json({ success: false, message: '유효하지 않은 사용자입니다.' });
   }
 });
 
