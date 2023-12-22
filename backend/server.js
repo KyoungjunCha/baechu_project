@@ -7,6 +7,9 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
+// Maria DB 
+const connection = require('./db');
+
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -22,6 +25,14 @@ app.post('/signup', (req, res) => {
 
   const newUser = { username, password };
   users.push(newUser);
+  // console.log("users test sdasda:",users);
+
+  let query = 'INSERT INTO test (id, password) VALUES (?, ?)';
+  let result =[
+    username,
+    password
+  ]
+  connection.query(query, result);
 
   return res.status(201).json({ success: true, message: '회원가입이 성공적으로 완료되었습니다.' });
 });
