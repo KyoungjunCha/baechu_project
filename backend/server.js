@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const port = 3000;
@@ -48,6 +49,47 @@ app.post('/login', (req, res) => {
   }
 });
 
+
+//임시비밀번호 전송
+app.post('/forgot-password', async(req, res) => {
+  const userEmail = req.body.email;
+
+  // TODO: 여기에서 유효한 사용자 이메일인지 확인하는 로직을 추가
+
+  // 임시 비밀번호 생성
+  const temporaryPassword = Math.random().toString(36).slice(-8);
+
+  // 이메일 전송 옵션 설정
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.naver.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: 'zktmzkxh1234',
+      pass: 'zktmzkxh1164',
+    },
+  });
+
+  const mailOptions = {
+    from: 'zktmzkxh1234@naver.com',
+    to: userEmail,
+    subject: 'Temporary Password',
+    text: `Your temporary password is: ${temporaryPassword}`,
+  };
+
+  // 이메일 전송
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', info.response);
+    res.status(200).json({ success: true, message: 'Email sent successfully' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ success: false, message: 'Error sending email' });
+  }
+  });
+
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
