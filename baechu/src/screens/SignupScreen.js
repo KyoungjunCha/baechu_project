@@ -1,9 +1,11 @@
 // SignupComponent.js
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, Share } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import HeaderComponent from '../components/HeaderComponent';
+
 
 const SignupComponent = () => {
     const navigation = useNavigation();
@@ -27,8 +29,22 @@ const SignupComponent = () => {
         }
     };
 
+    const MyShareComponent = async () => {
+        const shareOptions = {
+            message: 'My password',
+            url: 'https://192.168.0.11:3000'
+        }
+
+        try {
+            await Sharing.shareAsync(shareOptions);
+        } catch (error) {
+            console.error('Error sharing:', error.message);
+        }
+    };
+
     return (
         <View>
+            {/* <HeaderComponent title="SignUp" /> */}
             <Text>Username:</Text>
             <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
@@ -47,6 +63,10 @@ const SignupComponent = () => {
             <Button title="Sign Up" onPress={handleSignup} />
 
             <Text>{message}</Text>
+
+            {/* <TouchableOpacity onPress={MyShareComponent}>
+                <Text>Share</Text>
+            </TouchableOpacity> */}
         </View>
     );
 };
