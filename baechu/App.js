@@ -9,7 +9,7 @@ import SignupScreen from './src/screens/SignupScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import BottomTabBar from './src/components/BottomTabBar';
 import FindScreen from './src/screens/FindScreen';
-
+import DetailScreen from './src/screens/DetailScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -18,6 +18,7 @@ const Tab = createBottomTabNavigator();
 const HomeStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Screen name='Detail' component={DetailScreen}/>
   </Stack.Navigator>
 );
 
@@ -35,7 +36,7 @@ const App = () => {
         initialRouteName="Home"
         tabBar={(props) => <BottomTabBar {...props} />}
       >
-        <Tab.Screen name="Home" component={HomeScreen}/>
+        <Tab.Screen name="Home" component={HomeStack}/>
         <Tab.Screen name="Signup" component={SignupScreen} />
         <Tab.Screen name="Login" component={LoginScreen} />
         <Tab.Screen name="Find" component={FindScreen} />

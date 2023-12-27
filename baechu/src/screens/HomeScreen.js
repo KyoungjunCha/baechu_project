@@ -21,6 +21,10 @@ const HomeScreen = () => {
   const Find = () => {
     navigation.navigate('Find')
   }
+  
+  const Detail = () =>{
+    navigation.navigate('Detail')
+  }
 
   const onShare = async () => {
     try {
@@ -51,6 +55,7 @@ const HomeScreen = () => {
       <Button title="Login" onPress={goToLogin} />
       <Button title="Share" onPress={onShare} />
       <Button title="Find" onPress={Find}/>
+      <Button title="Detail" onPress={Detail}/>
       {/* <Button title="find Pass Word" onPress={findPassword}/> */}
     </View>
 
