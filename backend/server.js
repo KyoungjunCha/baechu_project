@@ -66,7 +66,7 @@ app.post('/forgot-password', async(req, res) => {
     secure: false, // true for 465, false for other ports
     auth: {
       user: 'zktmzkxh1234',
-      pass: 'zktmzkxh1164',
+      pass: '****',
     },
   });
 
