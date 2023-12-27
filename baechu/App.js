@@ -6,9 +6,16 @@ import SignupScreen from './src/screens/SignupScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import { firebase } from '@react-native-firebase/app';
 import messaging from '@react-native-firebase/messaging';
+import {Platform, NativeModules, PermissionsAndroid} from 'react-native';
 
 const firebaseConfig = {
   // Firebase 프로젝트 설정 정보 입력
+  apiKey: 'YOUR_API_KEY',
+  authDomain: 'YOUR_AUTH_DOMAIN',
+  projectId: 'YOUR_PROJECT_ID',
+  storageBucket: 'YOUR_STORAGE_BUCKET',
+  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+  appId: 'YOUR_APP_ID',
 };
 
 // Firebase 초기화
