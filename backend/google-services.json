@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "745678394406",
+    "project_id": "baechu-83ecd",
+    "storage_bucket": "baechu-83ecd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745678394406:android:ee1d304dca624aeae002e7",
+        "android_client_info": {
+          "package_name": "com.baechu.baechupackagename"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5kybfrzqT0dE4TWEgNQY1qzVpID_Dac0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
