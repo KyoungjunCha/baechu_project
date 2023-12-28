@@ -1,23 +1,32 @@
 // SignupComponent.js
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, Share } from 'react-native';
+import { View, Text, TextInput, Button,TouchableOpacity, Share } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import HeaderComponent from '../components/HeaderComponent';
 
-
 const SignupComponent = () => {
     const navigation = useNavigation();
-    const [username, setUsername] = useState('');
+    const [nickname, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [year, setYear] = useState('');
+    const [month, setMonth] = useState('');
+    const [day, setDay] = useState('');
+    const [gender, setGender] = useState('');
     const [message, setMessage] = useState('');
 
     const handleSignup = async () => {
         try {
-            const response = await axios.post('http://192.168.0.11:3000/signup', {
-                username,
+            const response = await axios.post('http://192.168.45.66:3000/signup', {
+                email,
+                nickname,
                 password,
+                year,
+                month,
+                day,
+                gender,
             });
 
             console.log('Signup successful:', response.data);
@@ -45,11 +54,18 @@ const SignupComponent = () => {
     return (
         <View>
             {/* <HeaderComponent title="SignUp" /> */}
+            <Text>Email:</Text>
+            <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
+                onChangeText={(text) => setEmail(text)}
+                value={email}
+            />
+
             <Text>Username:</Text>
             <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
                 onChangeText={(text) => setUsername(text)}
-                value={username}
+                value={nickname}
             />
 
             <Text>Password:</Text>
@@ -59,6 +75,61 @@ const SignupComponent = () => {
                 value={password}
                 secureTextEntry
             />
+            
+            <Text>생년월일:</Text>
+            <View style={{ flexDirection: 'row' }}>
+                {/* 년 선택 */}
+                <TextInput
+                style={{ flex: 1, height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
+                onChangeText={(text) => setYear(text)}
+                value={year}
+                placeholder="년"
+                />
+
+                {/* 월 선택 */}
+                <TextInput
+                style={{ flex: 1, height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
+                onChangeText={(text) => setMonth(text)}
+                value={month}
+                placeholder="월"
+                />
+
+                {/* 일 선택 */}
+                <TextInput
+                style={{ flex: 1, height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
+                onChangeText={(text) => setDay(text)}
+                value={day}
+                placeholder="일"
+                />
+            </View>
+
+            <Text>Gender:</Text>
+            <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
+                onChangeText={(text) => setGender(text)}
+                value={gender}
+            />
+            {/* 성별 선택 부분
+            <Text>성별:</Text>
+            <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                <CheckBox
+                value={gender === 'male'}
+                onValueChange={() => setGender('male')}
+                />
+                <Text>남성</Text>
+
+                <CheckBox
+                value={gender === 'female'}
+                onValueChange={() => setGender('female')}
+                />
+                <Text>여성</Text>
+
+                <CheckBox
+                value={gender === 'other'}
+                onValueChange={() => setGender('other')}
+                />
+                <Text>기타</Text>
+            </View> */}
 
             <Button title="Sign Up" onPress={handleSignup} />
 

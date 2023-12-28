@@ -15,7 +15,7 @@ const LoginScreen = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://192.168.0.11:3000/login', {
+            const response = await axios.post('http://192.168.45.66:3000/login', {
                 username,
                 password,
             });
@@ -31,7 +31,7 @@ const LoginScreen = () => {
     return (
         <View>
             {/* <HeaderComponent title="Login" /> */}
-            <Text>Username:</Text>
+            <Text>Username test:</Text>
             <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
                 onChangeText={(text) => setUsername(text)}
